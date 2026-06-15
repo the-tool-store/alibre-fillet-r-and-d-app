@@ -30,3 +30,12 @@ https://help.solidworks.com/2014/english/api/swconst/SolidWorks.Interop.swconst~
 
 
 **It is well understood that Alibre Design does not have full-round fillet capabilities. My goal was to review another 3D-CAD API, compare its methods, and explore the possibility of creating a full-round fillet by using the existing Alibre APIs.**
+
+## Projects
+
+This repository includes a couple of small test applications used while exploring the Alibre API:
+
+* `0001` – a console based prototype for variable radius fillet experimentation.
+* `0003` – a Windows Forms test harness for general API trials.
+
+An unused WPF sample that previously lived in the `0002` directory was removed as it served no purpose.
