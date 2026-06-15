@@ -163,8 +163,6 @@ Public Class Form1
             End Select
         Next
     End Sub
-    Private Sub ListBox2_SelectedValueChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedValueChanged
-    End Sub
     Private Sub ListBox3_SelectedValueChanged(sender As Object, e As EventArgs) Handles ListBox3.SelectedValueChanged
         ListBox5.Items.Clear()
         For Each item As IADSketchFigure In sketches.Item(ListBox3.SelectedIndex).Figures
@@ -199,8 +197,6 @@ Public Class Form1
                 Case ADGeometryType.AD_POINT
             End Select
         Next
-    End Sub
-    Private Sub ListBox6_SelectedValueChanged(sender As Object, e As EventArgs) Handles ListBox6.SelectedValueChanged
     End Sub
     Private Sub AddEdgeNode(ByVal edge As IADEdge)
         Dim topologyTypeString As String = GetTopologyTypeString(edge.TopologyType)
