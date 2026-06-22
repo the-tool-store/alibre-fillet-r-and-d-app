@@ -57,6 +57,9 @@ Public Class Form1
         Next
     End Sub
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        If ListBox1.SelectedIndex < 0 Then
+            Return
+        End If
         TreeView1.Nodes.Clear()
         TreeView1.Nodes.Add(objPartSession.Name)
         newClear = Root.NewObjectCollector
@@ -84,6 +87,9 @@ Public Class Form1
     End Sub
     Sub PrintEdgeData()
         ListBox9.Items.Clear()
+        If ListBox1.SelectedIndex < 0 Then
+            Return
+        End If
         For Each objEdge As IADEdge In objIADFaces.Item(ListBox1.SelectedIndex).Edges
             ListBox9.Items.Add(" Edge CurveType : " & GetCurveTypeString(objEdge.Geometry.CurveType))
             Select Case objEdge.Geometry.CurveType
@@ -151,10 +157,21 @@ Public Class Form1
                     ListBox9.Items.Add("End.Z : " & a.End.Z)
                 Case ADGeometryType.AD_ELLIPTICAL_ARC
                     Dim a As IADEllipticalArc = CType(objEdge.Geometry, IADEllipticalArc)
-                    ListBox9.Items.Add("Major Radius : " & a.Axis.Length)
-                    ListBox9.Items.Add("Minor Radius : " & a.Center.X)
-                    ListBox9.Items.Add("Start Angle : " & a.Start.X)
-                    ListBox9.Items.Add("End Angle : " & a.MajorAxis)
+                    ListBox9.Items.Add("MajorAxis : " & a.MajorAxis)
+                    ListBox9.Items.Add("MinorMajorRatio : " & a.MinorMajorRatio)
+                    ListBox9.Items.Add("Axis.X : " & a.Axis.X)
+                    ListBox9.Items.Add("Axis.Y : " & a.Axis.Y)
+                    ListBox9.Items.Add("Axis.Z : " & a.Axis.Z)
+                    ListBox9.Items.Add("Axis.Length : " & a.Axis.Length)
+                    ListBox9.Items.Add("Center.X : " & a.Center.X)
+                    ListBox9.Items.Add("Center.Y : " & a.Center.Y)
+                    ListBox9.Items.Add("Center.Z : " & a.Center.Z)
+                    ListBox9.Items.Add("Start.X : " & a.Start.X)
+                    ListBox9.Items.Add("Start.Y : " & a.Start.Y)
+                    ListBox9.Items.Add("Start.Z : " & a.Start.Z)
+                    ListBox9.Items.Add("End.X : " & a.End.X)
+                    ListBox9.Items.Add("End.Y : " & a.End.Y)
+                    ListBox9.Items.Add("End.Z : " & a.End.Z)
                 Case ADGeometryType.AD_POINT
                     Dim a As IADPoint = CType(objEdge.Geometry, IADPoint)
                     ListBox9.Items.Add("Point.X : " & a.X)
@@ -179,26 +196,28 @@ Public Class Form1
     End Sub
     Private Sub ListBox5_SelectedValueChanged(sender As Object, e As EventArgs) Handles ListBox5.SelectedValueChanged
         ListBox7.Items.Clear()
-        For Each item As IADSketchFigure In sketches.Item(ListBox3.SelectedIndex).Figures
-            ListBox7.Items.Add("Figure Type : " & GetCurveTypeString(item.FigureType))
-            Select Case item.FigureType
-                Case ADGeometryType.AD_LINE
-                    Dim a As IADSketchLine = CType(item, IADSketchLine)
-                    Dim objStartPoint As AlibreX.IADSketchPoint
-                    objStartPoint = a.Start
-                    Dim objEndPoint As AlibreX.IADSketchPoint
-                    objEndPoint = a.End
-                    Dim dblLength As Double
-                    dblLength = a.Length
-                    ListBox7.Items.Add(dblLength)
-                Case ADGeometryType.AD_BSPLINE
-                Case ADGeometryType.AD_CIRCLE
-                Case ADGeometryType.AD_ELLIPSE
-                Case ADGeometryType.AD_ELLIPTICAL_ARC
-                Case ADGeometryType.AD_CIRCULAR_ARC
-                Case ADGeometryType.AD_POINT
-            End Select
-        Next
+        If ListBox3.SelectedIndex < 0 Or ListBox5.SelectedIndex < 0 Then
+            Return
+        End If
+        Dim item As IADSketchFigure = sketches.Item(ListBox3.SelectedIndex).Figures.Item(ListBox5.SelectedIndex)
+        ListBox7.Items.Add("Figure Type : " & GetCurveTypeString(item.FigureType))
+        Select Case item.FigureType
+            Case ADGeometryType.AD_LINE
+                Dim a As IADSketchLine = CType(item, IADSketchLine)
+                Dim objStartPoint As AlibreX.IADSketchPoint
+                objStartPoint = a.Start
+                Dim objEndPoint As AlibreX.IADSketchPoint
+                objEndPoint = a.End
+                Dim dblLength As Double
+                dblLength = a.Length
+                ListBox7.Items.Add(dblLength)
+            Case ADGeometryType.AD_BSPLINE
+            Case ADGeometryType.AD_CIRCLE
+            Case ADGeometryType.AD_ELLIPSE
+            Case ADGeometryType.AD_ELLIPTICAL_ARC
+            Case ADGeometryType.AD_CIRCULAR_ARC
+            Case ADGeometryType.AD_POINT
+        End Select
     End Sub
     Private Sub ListBox6_SelectedValueChanged(sender As Object, e As EventArgs) Handles ListBox6.SelectedValueChanged
     End Sub

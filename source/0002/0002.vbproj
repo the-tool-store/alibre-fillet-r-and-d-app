@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net481</TargetFramework>
@@ -24,7 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AlibreX">
-      <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\AlibreX.dll</HintPath>
+      <HintPath>C:\Program Files\Alibre Design 29.0.0.29060\Program\AlibreX.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <RootNamespace>_0001</RootNamespace>
@@ -14,7 +14,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AlibreX">
-      <HintPath>C:\Program Files\Alibre Design 27.0.1.27039\Program\AlibreX.dll</HintPath>
+      <HintPath>C:\Program Files\Alibre Design 29.0.0.29060\Program\AlibreX.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
