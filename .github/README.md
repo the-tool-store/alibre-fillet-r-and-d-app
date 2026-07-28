@@ -18,7 +18,6 @@
   - Where things live
     - `source/` holds the three VB.NET projects and the sample parts.
     - `documentation/` holds reference notes.
-    - `reviews/` holds dated code reviews.
   - Good to know
     - This is exploratory code rather than a finished tool, so expect rough edges.
     - The variable-radius fillet call is scaffolded but switched off, so nothing is written to your part.
